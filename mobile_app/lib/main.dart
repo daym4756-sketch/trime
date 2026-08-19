@@ -5,6 +5,7 @@ import 'features/auth/pages/splash_page.dart';
 import 'core/services/auth_service.dart';
 import 'core/services/app_state.dart';
 import 'core/services/supabase_service.dart';
+import 'core/services/backend_service.dart';
 import 'theme/app_theme.dart';
 
 final AuthService authService = AuthService();
@@ -17,6 +18,7 @@ Future<void> main() async {
   } catch (e) {
     debugPrint('Firebase init error (periksa google-services.json): $e');
   }
+  await backendService.init();
   await supabaseService.init();
   await appState.loadAll();
   runApp(const TrimeApp());

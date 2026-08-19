@@ -1,3 +1,7 @@
+# Environment files — JANGAN di-commit
+.env
+.env.local
+
 # Miscellaneous
 *.class
 *.log

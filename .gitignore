@@ -1,0 +1,34 @@
+# Environment files — JANGAN di-commit (berisi kredensial rahasia)
+**/.env
+**/.env.local
+mobile_app/.env
+recognition_service/.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Supabase / local dumps
+*.dump
+*.sql

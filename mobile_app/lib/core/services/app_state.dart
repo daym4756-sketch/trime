@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../shared_widgets/card_barbershop.dart';
 import '../../shared_widgets/card_kapster.dart';
 import 'supabase_service.dart';
+import 'backend_service.dart';
 
 class AvailabilitySlot {
   final DateTime start;
@@ -592,6 +593,8 @@ class AppState extends ChangeNotifier {
     required double price,
     String? notes,
     String? customerName,
+    String? customerPhone,
+    String? ownerPhone,
   }) {
     final id = 'BK${DateTime.now().millisecondsSinceEpoch}';
     final b = BookingItem(
@@ -609,20 +612,39 @@ class AppState extends ChangeNotifier {
     _persistBookings();
     supabaseService.createBooking(b);
     notifyListeners();
+
+    if (customerPhone != null && customerPhone.isNotEmpty) {
+      backendService.notifyBookingCreated(
+        booking: b,
+        customerPhone: customerPhone,
+        barbershopName: barbershop?.name,
+        ownerPhone: ownerPhone,
+      );
+    }
     return id;
   }
 
-  void addBookingRaw(BookingItem b) {
+  void addBookingRaw(BookingItem b, {String? customerPhone, String? ownerPhone}) {
     _bookings.add(b);
     _persistBookings();
     supabaseService.createBooking(b);
     notifyListeners();
+
+    if (customerPhone != null && customerPhone.isNotEmpty) {
+      backendService.notifyBookingCreated(
+        booking: b,
+        customerPhone: customerPhone,
+        ownerPhone: ownerPhone,
+      );
+    }
   }
 
-  void updateBookingStatus(String id, String status) {
+  void updateBookingStatus(String id, String status, {String? customerPhone}) {
     final idx = _bookings.indexWhere((b) => b.id == id);
     if (idx < 0) return;
     final old = _bookings[idx];
+    final oldStatus = old.status;
+    final newStatus = status;
     _bookings[idx] = BookingItem(
       id: old.id,
       barbershopId: old.barbershopId,
@@ -637,6 +659,17 @@ class AppState extends ChangeNotifier {
     _persistBookings();
     supabaseService.updateBookingStatus(id, status);
     notifyListeners();
+
+    if (oldStatus != newStatus && customerPhone != null && customerPhone.isNotEmpty) {
+      backendService.notifyBookingStatusChanged(
+        bookingId: id,
+        customerName: old.customerName,
+        customerPhone: customerPhone,
+        oldStatus: oldStatus,
+        newStatus: newStatus,
+        barbershopName: old.barbershopId,
+      );
+    }
   }
 
   void cancelBooking(String id) {
