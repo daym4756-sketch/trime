@@ -395,117 +395,116 @@ class _KapsterDashboardPageState extends State<KapsterDashboardPage>
                     colors: [Color(0xFF1F2A44), Color(0xFF3D4D7A), Color(0xFF2E3A59)],
                   ),
                 ),
-                padding: EdgeInsets.fromLTRB(
-                  TrimeSpacing.lg,
-                  MediaQuery.of(context).padding.top + 52,
-                  TrimeSpacing.lg,
-                  TrimeSpacing.lg,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+                child: SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.all(TrimeSpacing.lg),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        GestureDetector(
-                          onTap: _pickPhoto,
-                          child: SmartAvatar(
-                            pathOrUrl: _kapsterPhoto,
-                            radius: 30,
-                            fallbackIcon: Icons.person,
-                          ),
-                        ),
-                        const SizedBox(width: TrimeSpacing.md),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
+                        Row(
+                          children: [
+                            GestureDetector(
+                              onTap: _pickPhoto,
+                              child: SmartAvatar(
+                                pathOrUrl: _kapsterPhoto,
+                                radius: 30,
+                                fallbackIcon: Icons.person,
+                              ),
+                            ),
+                            const SizedBox(width: TrimeSpacing.md),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Expanded(
-                                    child: GestureDetector(
-                                      onTap: _editName,
-                                      child: Text(
-                                        _kapsterName.isEmpty ? 'Tap untuk isi nama' : _kapsterName,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.poppins(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w800,
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: GestureDetector(
+                                          onTap: _editName,
+                                          child: Text(
+                                            _kapsterName.isEmpty ? 'Tap untuk isi nama' : _kapsterName,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w800,
+                                            ),
+                                          ),
                                         ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 4),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white.withValues(alpha: 0.2),
+                                          borderRadius: TrimeSpacing.radiusPill,
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Icon(Icons.star,
+                                                size: 14, color: Color(0xFFFFD700)),
+                                            const SizedBox(width: 4),
+                                            Text(
+                                              _kapsterRating.toStringAsFixed(1),
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 12),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 6),
+                                  GestureDetector(
+                                    onTap: _editBadge,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 3),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withValues(alpha: 0.15),
+                                        borderRadius: TrimeSpacing.radiusSm,
+                                      ),
+                                      child: Text(
+                                        _badgeType.isEmpty ? 'Tap pilih badge' : '$_badgeType${_specialties.isNotEmpty ? ' • ${_specialties.take(2).join(', ')}' : ''}',
+                                        style: const TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w500),
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 4),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white.withValues(alpha: 0.2),
-                                      borderRadius: TrimeSpacing.radiusPill,
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const Icon(Icons.star,
-                                            size: 14, color: Color(0xFFFFD700)),
-                                        const SizedBox(width: 4),
-                                        Text(
-                                          _kapsterRating.toStringAsFixed(1),
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 12),
-                                        ),
-                                      ],
+                                  const SizedBox(height: 6),
+                                  GestureDetector(
+                                    onTap: _editSpecialties,
+                                    child: Text(
+                                      _specialties.isEmpty ? 'Tap atur spesialisasi' : '💈 ${_specialties.join(', ')}',
+                                      style: const TextStyle(color: Colors.white60, fontSize: 10),
                                     ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 6),
-                              GestureDetector(
-                                onTap: _editBadge,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 3),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white.withValues(alpha: 0.15),
-                                    borderRadius: TrimeSpacing.radiusSm,
-                                  ),
-                                  child: Text(
-                                    _badgeType.isEmpty ? 'Tap pilih badge' : '$_badgeType${_specialties.isNotEmpty ? ' • ${_specialties.take(2).join(', ')}' : ''}',
-                                    style: const TextStyle(
-                                        color: Colors.white70,
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 6),
-                              GestureDetector(
-                                onTap: _editSpecialties,
-                                child: Text(
-                                  _specialties.isEmpty ? 'Tap atur spesialisasi' : '💈 ${_specialties.join(', ')}',
-                                  style: const TextStyle(color: Colors.white60, fontSize: 10),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        Row(
+                          children: [
+                            _quickStat('$_todayBookingsDone', 'Selesai'),
+                            const SizedBox(width: TrimeSpacing.md),
+                            _quickStat('$_pendingBookings', 'Pending'),
+                            const SizedBox(width: TrimeSpacing.md),
+                            _quickStat('$_availableSlotsToday', 'Slot Kosong'),
+                            const SizedBox(width: TrimeSpacing.md),
+                            _quickStat(_rupiah.format(_todayEarnings), 'Pendapatan'),
+                          ],
                         ),
                       ],
                     ),
-                    const Spacer(),
-                    Row(
-                      children: [
-                        _quickStat('$_todayBookingsDone', 'Selesai'),
-                        const SizedBox(width: TrimeSpacing.md),
-                        _quickStat('$_pendingBookings', 'Pending'),
-                        const SizedBox(width: TrimeSpacing.md),
-                        _quickStat('$_availableSlotsToday', 'Slot Kosong'),
-                        const SizedBox(width: TrimeSpacing.md),
-                        _quickStat(_rupiah.format(_todayEarnings), 'Pendapatan'),
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),

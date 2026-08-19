@@ -122,7 +122,7 @@ String _faceDetailsFor(String faceShape) {
 
 List<HairRecommendation> _generateRecommendations(String faceShape, String hairType) {
   String image(String style) =>
-      'https://core-normal.traeapi.us/api/ide/v1/text_to_image?prompt=${Uri.encodeComponent('$style haircut on man face shape $faceShape realistic photo')}&image_size=square_hd';
+      'https://core-normal.traeapi.us/api/ide/v1/text_to_image?prompt=${Uri.encodeComponent('Professional male hair model with $style haircut, $faceShape face shape, highly detailed realistic portrait, 8k resolution, barbershop lighting, high contrast')}&image_size=square_hd';
 
   final f = faceShape.toLowerCase();
   final base = <HairRecommendation>[
