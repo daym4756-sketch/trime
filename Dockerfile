@@ -8,8 +8,12 @@ ENV PYTHONUNBUFFERED=1
 ENV PIP_ROOT_USER_ACTION=ignore
 ENV TZ=Asia/Jakarta
 
-# -- System dependencies (lightweight) --
+# -- System dependencies & C++ Build Tools for dlib --
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    cmake \
+    libopenblas-dev \
+    libx11-dev \
     libgl1 \
     libglib2.0-0 \
     libsm6 \
