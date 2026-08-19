@@ -6,6 +6,11 @@ WORKDIR /app
 COPY recognition_service/requirements.txt /app/requirements.txt
 COPY recognition_service /app
 
+# Install system dependency for OpenMP (required by some numpy/OpenCV builds)
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install prebuilt native packages from conda-forge to avoid compiling dlib from source
 # Pin Python to 3.10 to avoid conflicts if the base image or pins force Python 3.14
 RUN conda config --set channel_priority strict \
