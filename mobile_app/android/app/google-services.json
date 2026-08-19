@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "434819320549",
+    "project_id": "trime-c6a34",
+    "storage_bucket": "trime-c6a34.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434819320549:android:c805e544bf12f11692a20c",
+        "android_client_info": {
+          "package_name": "com.trime.trime_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQAIys6c8TO_oK-EbmXO7132R2PDa7w8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
