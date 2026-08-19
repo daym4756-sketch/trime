@@ -120,9 +120,23 @@ String _faceDetailsFor(String faceShape) {
   }
 }
 
+// Map gaya rambut ke foto Unsplash yang stabil dan relevan
+const Map<String, String> _haircutImages = {
+  'Classic Pompadour':
+      'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&h=400&fit=crop&auto=format',
+  'Side Part Fade':
+      'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=400&h=400&fit=crop&auto=format',
+  'Textured Undercut':
+      'https://images.unsplash.com/photo-1567894340315-735d7c361db0?w=400&h=400&fit=crop&auto=format',
+  'Modern Quiff':
+      'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=400&fit=crop&auto=format',
+  'French Crop':
+      'https://images.unsplash.com/photo-1596728325488-58c87691e9af?w=400&h=400&fit=crop&auto=format',
+};
+
 List<HairRecommendation> _generateRecommendations(String faceShape, String hairType) {
-  String image(String style) =>
-      'https://core-normal.traeapi.us/api/ide/v1/text_to_image?prompt=${Uri.encodeComponent('Professional male hair model with $style haircut, $faceShape face shape, highly detailed realistic portrait, 8k resolution, barbershop lighting, high contrast')}&image_size=square_hd';
+  String image(String style) => _haircutImages[style] ??
+      'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=400&fit=crop&auto=format';
 
   final f = faceShape.toLowerCase();
   final base = <HairRecommendation>[

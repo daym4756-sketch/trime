@@ -382,7 +382,7 @@ class _KapsterDashboardPageState extends State<KapsterDashboardPage>
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
           SliverAppBar(
-            expandedHeight: 260,
+            expandedHeight: 290,
             pinned: true,
             backgroundColor: const Color(0xFF2E3A59),
             foregroundColor: Colors.white,
@@ -490,7 +490,7 @@ class _KapsterDashboardPageState extends State<KapsterDashboardPage>
                             ),
                           ],
                         ),
-                        const Spacer(),
+                        const SizedBox(height: TrimeSpacing.md),
                         Row(
                           children: [
                             _quickStat('$_todayBookingsDone', 'Selesai'),
@@ -502,6 +502,7 @@ class _KapsterDashboardPageState extends State<KapsterDashboardPage>
                             _quickStat(_rupiah.format(_todayEarnings), 'Pendapatan'),
                           ],
                         ),
+                        const SizedBox(height: TrimeSpacing.sm),
                       ],
                     ),
                   ),

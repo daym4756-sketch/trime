@@ -164,14 +164,30 @@ class CardBarbershop extends StatelessWidget {
     );
   }
 
+  // Daftar foto default barbershop dari Unsplash
+  static const List<String> _defaultShopImages = [
+    'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=400&h=300&fit=crop&auto=format',
+    'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&auto=format',
+    'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=300&fit=crop&auto=format',
+    'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&h=300&fit=crop&auto=format',
+  ];
+
   Widget _buildPlaceholder() {
-    return Container(
-      color: TrimeColors.surfaceAlt,
-      child: Center(
-        child: Icon(
-          Icons.store,
-          size: 48,
-          color: TrimeColors.primaryNavy.withValues(alpha: 0.4),
+    // Gunakan nama barbershop sebagai seed agar konsisten per toko
+    final idx = barbershop.name.hashCode.abs() % _defaultShopImages.length;
+    return Image.network(
+      _defaultShopImages[idx],
+      fit: BoxFit.cover,
+      width: double.infinity,
+      height: double.infinity,
+      errorBuilder: (_, __, ___) => Container(
+        color: TrimeColors.surfaceAlt,
+        child: Center(
+          child: Icon(
+            Icons.store,
+            size: 48,
+            color: TrimeColors.primaryNavy.withValues(alpha: 0.4),
+          ),
         ),
       ),
     );

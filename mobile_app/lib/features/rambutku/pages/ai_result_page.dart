@@ -100,7 +100,7 @@ class _AiResultPageState extends State<AiResultPage> {
             isReady: true,
             topRank: '#1 TOP Kapster',
             fotoUrl:
-                'https://core-normal.traeapi.us/api/ide/v1/text_to_image?prompt=master+barber+elegant+suit+under+apron+studio+portrait&image_size=portrait_4_3',
+                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&auto=format',
           ),
         ),
       ),

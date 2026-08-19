@@ -535,121 +535,123 @@ class _BarberDashboardPageState extends State<BarberDashboardPage>
                       ),
                     ),
                   ),
+                  Positioned(
+                    left: TrimeSpacing.lg,
+                    right: TrimeSpacing.lg,
+                    bottom: TrimeSpacing.lg,
                     child: SafeArea(
                       bottom: false,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: TrimeSpacing.lg),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            if (_ownerId.isNotEmpty) _buildHeaderShopSelector(),
-                            const SizedBox(height: 6),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: GestureDetector(
-                                    onTap: () => _editField(
-                                      title: 'Nama Barbershop',
-                                      initial: _shopName,
-                                      icon: Icons.store,
-                                      onSave: (v) => _shopName = v,
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Flexible(
-                                          child: Text(
-                                            _shopName.isEmpty ? 'Tap isi nama toko' : _shopName,
-                                            style: GoogleFonts.poppins(
-                                              color: Colors.white,
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.w800,
-                                            ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (_ownerId.isNotEmpty) _buildHeaderShopSelector(),
+                          const SizedBox(height: 6),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () => _editField(
+                                    title: 'Nama Barbershop',
+                                    initial: _shopName,
+                                    icon: Icons.store,
+                                    onSave: (v) => _shopName = v,
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          _shopName.isEmpty ? 'Tap isi nama toko' : _shopName,
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w800,
                                           ),
                                         ),
-                                        const SizedBox(width: 4),
-                                        const Icon(Icons.edit_outlined, size: 16, color: Colors.white70),
-                                      ],
-                                    ),
+                                      ),
+                                      const SizedBox(width: 4),
+                                      const Icon(Icons.edit_outlined, size: 16, color: Colors.white70),
+                                    ],
                                   ),
                                 ),
-                                IconButton.filled(
-                                  onPressed: _pickCover,
-                                  icon: const Icon(Icons.photo_camera, size: 18),
-                                  style: IconButton.styleFrom(
-                                    backgroundColor: Colors.white.withValues(alpha: 0.2),
-                                  ),
+                              ),
+                              IconButton.filled(
+                                onPressed: _pickCover,
+                                icon: const Icon(Icons.photo_camera, size: 18),
+                                style: IconButton.styleFrom(
+                                  backgroundColor: Colors.white.withValues(alpha: 0.2),
                                 ),
-                              ],
-                            ),
-                            const SizedBox(height: 6),
-                            Row(
-                              children: [
-                                const Icon(Icons.location_on_outlined, size: 14, color: Colors.white70),
-                                const SizedBox(width: 4),
-                                Expanded(
-                                  child: GestureDetector(
-                                    onTap: () => _editField(
-                                      title: 'Alamat',
-                                      initial: _shopAddress,
-                                      icon: Icons.location_on_outlined,
-                                      maxLines: 2,
-                                      onSave: (v) => _shopAddress = v,
-                                    ),
-                                    child: Text(
-                                      _shopAddress.isEmpty ? 'Tap isi alamat' : _shopAddress,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(color: Colors.white70, fontSize: 12),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 4),
-                            Row(
-                              children: [
-                                const Icon(Icons.phone, size: 14, color: Colors.white70),
-                                const SizedBox(width: 4),
-                                GestureDetector(
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          Row(
+                            children: [
+                              const Icon(Icons.location_on_outlined, size: 14, color: Colors.white70),
+                              const SizedBox(width: 4),
+                              Expanded(
+                                child: GestureDetector(
                                   onTap: () => _editField(
-                                    title: 'Nomor WhatsApp',
-                                    initial: _shopPhone,
-                                    icon: Icons.phone,
-                                    keyboard: TextInputType.phone,
-                                    onSave: (v) => _shopPhone = v,
+                                    title: 'Alamat',
+                                    initial: _shopAddress,
+                                    icon: Icons.location_on_outlined,
+                                    maxLines: 2,
+                                    onSave: (v) => _shopAddress = v,
                                   ),
                                   child: Text(
-                                    _shopPhone.isEmpty ? 'Tap isi WA' : _shopPhone,
+                                    _shopAddress.isEmpty ? 'Tap isi alamat' : _shopAddress,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(color: Colors.white70, fontSize: 12),
                                   ),
                                 ),
-                                const SizedBox(width: 16),
-                                const Icon(Icons.access_time, size: 14, color: Colors.white70),
-                                const SizedBox(width: 4),
-                                GestureDetector(
-                                  onTap: () => _editField(
-                                    title: 'Jam Operasional',
-                                    initial: _shopHours,
-                                    icon: Icons.access_time,
-                                    onSave: (v) => _shopHours = v,
-                                  ),
-                                  child: Flexible(
-                                    child: Text(
-                                      _shopHours.isEmpty ? 'Tap isi jam' : _shopHours,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(color: Colors.white70, fontSize: 12),
-                                    ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          Row(
+                            children: [
+                              const Icon(Icons.phone, size: 14, color: Colors.white70),
+                              const SizedBox(width: 4),
+                              GestureDetector(
+                                onTap: () => _editField(
+                                  title: 'Nomor WhatsApp',
+                                  initial: _shopPhone,
+                                  icon: Icons.phone,
+                                  keyboard: TextInputType.phone,
+                                  onSave: (v) => _shopPhone = v,
+                                ),
+                                child: Text(
+                                  _shopPhone.isEmpty ? 'Tap isi WA' : _shopPhone,
+                                  style: const TextStyle(color: Colors.white70, fontSize: 12),
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                              const Icon(Icons.access_time, size: 14, color: Colors.white70),
+                              const SizedBox(width: 4),
+                              GestureDetector(
+                                onTap: () => _editField(
+                                  title: 'Jam Operasional',
+                                  initial: _shopHours,
+                                  icon: Icons.access_time,
+                                  onSave: (v) => _shopHours = v,
+                                ),
+                                child: Flexible(
+                                  child: Text(
+                                    _shopHours.isEmpty ? 'Tap isi jam' : _shopHours,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(color: Colors.white70, fontSize: 12),
                                   ),
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
+                  ),
                 ],
               ),
             ),
@@ -684,13 +686,30 @@ class _BarberDashboardPageState extends State<BarberDashboardPage>
     );
   }
 
-  Widget _coverPlaceholder() => Container(
-        color: TrimeColors.surfaceAlt,
-        child: Icon(
-          Icons.store,
-          size: 72,
-          color: TrimeColors.primaryNavy.withValues(alpha: 0.4),
-        ),
+  Widget _coverPlaceholder() => Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.network(
+            'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=800&h=400&fit=crop&auto=format',
+            fit: BoxFit.cover,
+            errorBuilder: (_, __, ___) => Container(
+              color: TrimeColors.primaryNavy.withValues(alpha: 0.8),
+              child: const Icon(Icons.store, size: 72, color: Colors.white24),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.black.withValues(alpha: 0.1),
+                  Colors.black.withValues(alpha: 0.6),
+                ],
+              ),
+            ),
+          ),
+        ],
       );
 
   Color _statusColor(String s) {
